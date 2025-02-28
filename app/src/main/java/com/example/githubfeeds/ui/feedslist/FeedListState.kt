@@ -1,10 +1,7 @@
 package com.example.githubfeeds.ui.feedslist
 
-import com.example.githubfeeds.data.models.GithubFeedsResponse
+import com.example.githubfeeds.data.models.entities.FeedEntity
 
 data class FeedListState(
-    val isLoading: Boolean = false,
-    val feeds: GithubFeedsResponse? = null,
-    val error: String = ""
-
+    val gitFeedsList: List<FeedEntity> = emptyList()
 )

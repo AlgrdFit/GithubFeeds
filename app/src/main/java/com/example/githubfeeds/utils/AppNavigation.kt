@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.githubfeeds.data.models.GithubFeedsResponse
+import com.example.githubfeeds.data.models.response.GithubFeedsResponse
 import com.example.githubfeeds.ui.detailedfeeds.DetailedFeedScreen
 import com.example.githubfeeds.ui.feedslist.FeedListScreen
 import kotlinx.serialization.Serializable
