@@ -1,5 +1,5 @@
 package com.example.githubfeeds.ui.detailedfeeds
 
 data class DetailedFeedState(
-    val feed: String
+    val feed: String? = null
 )

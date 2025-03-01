@@ -27,7 +27,7 @@ fun AppNavigation() {
             )
         ) {
             val args = it.toRoute<Router.DetailedFeedScreen>()
-            DetailedFeedScreen(navController, args)
+            DetailedFeedScreen(args)
         }
     }
 
@@ -39,6 +39,6 @@ sealed class Router {
 
     @Serializable
     data class DetailedFeedScreen(
-        val args: GithubFeedsResponse
+        val url: String
     ) : Router()
 }

@@ -12,7 +12,6 @@ class AuthInterceptor : Interceptor {
         val credentials = "$username:$token"
         val basicAuth = "Basic " + Base64.encodeToString(credentials.toByteArray(), Base64.NO_WRAP)
         val request = chain.request().newBuilder()
-            .addHeader("Accept", "application/vnd.github+json")
             .addHeader("Authorization", basicAuth)
             .build()
         return chain.proceed(request)

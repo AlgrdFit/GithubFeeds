@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.githubfeeds.data.models.entities.FeedPlaceholder
+import com.example.githubfeeds.utils.Router
 
 @Composable
 fun FeedListScreen(navController: NavController) {
@@ -75,13 +76,25 @@ fun FeedListScreen(navController: NavController) {
                     Button(
                         modifier = Modifier.align(Alignment.CenterHorizontally),
                         onClick = {
-                            viewModel.updateFinalUrlForFeed(feedEntity.feedTemplate, userInputs)
+                            viewModel.onConstructUrlClick(feedEntity.feedTemplate, userInputs)
                         },
                     ) {
                         Text("Construct URL")
                     }
 
-                    //showing final feed url
+                    if (feedEntity.finalUrl != null) {
+                        Button(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            onClick = {
+                                navController.navigate(
+                                    Router.DetailedFeedScreen(feedEntity.finalUrl)
+                                )
+                            },
+                        ) {
+                            Text("Lets see the feed!")
+                        }
+                    }
+
                     feedEntity.finalUrl?.let { finalUrl ->
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(

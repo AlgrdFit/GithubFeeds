@@ -70,25 +70,11 @@ class FeedListViewModel @Inject constructor(
         }
     }
 
-    fun updateFinalUrlForFeed(feedTemplate: String, userInputs: Map<FeedPlaceholder, String>) {
+    fun onConstructUrlClick(feedTemplate: String, userInputs: Map<FeedPlaceholder, String>) {
         var finalUrl = feedTemplate
         userInputs.forEach { (key, value) ->
             finalUrl = finalUrl.replace("{${key.placeholder}}", value.trim())
         }
-
-        Log.d("FeedListViewModel", "Final URL: $finalUrl")
-
-        if(userInputs.isEmpty()) {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    val gitFeedsList = feedsApi.getExplicitUrl(finalUrl)
-                    Log.d("response body", gitFeedsList.body()?.string().toString())
-                } catch (e: Exception) {
-                    Log.e("response error", e.message ?: e.toString())
-                }
-            }
-        }
-
 
         _state.update { state ->
             val updatedList = state.gitFeedsList.map { item ->
